@@ -38,6 +38,7 @@ export const updateHobbies = hobbies => {
     payload: hobbies
   };
 };
+
 //reducer
 export default function reducer(state = initialState, action) {
   switch (action.type) {

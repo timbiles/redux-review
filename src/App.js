@@ -7,6 +7,8 @@ import routes from './routes';
 import Nav from './components/nav/nav'
 import './App.css';
 
+//Wrap what you need access to in the provider. Remember to import Provider.
+
 class App extends Component {
   render() {
     return (

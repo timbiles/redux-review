@@ -14,7 +14,6 @@ class contact extends Component {
                 <p>My email is: {email}</p>
                 <p>I like to... {hobbies}</p>
                 <p>Don't forget to get me a present on my birthday: {birthday}</p>
-
             </div>
         );
     }
