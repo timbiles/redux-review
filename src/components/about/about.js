@@ -10,7 +10,17 @@ import {
 } from '../../ducks/reducer';
 
 class about extends Component {
+  
+
+  handleEvent = e => {
+    this.setState({[e.target.name]: e.target.value})
+  }
+  
   render() {
+
+
+    
+    // console.log(this.props)
     const {
       updateName,
       updateEmail,
@@ -22,7 +32,7 @@ class about extends Component {
         <h1>About</h1>
         <div>
           <h4>Name:</h4>
-          <input type="text" onChange={e => updateName(e.target.value)} />
+          <input type="text" onChange={e => updateName(e.target.value)}/>
         </div>
         <div>
           <h4>Email:</h4>
