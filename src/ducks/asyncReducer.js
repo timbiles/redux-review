@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const initialState = {
     characters: [],
-    isLoading: false
+    isLoading: false,
+    err: false
 }
 
 const GET_CHARACTERS = 'GET_CHARACTERS'
@@ -16,18 +17,18 @@ export const getCharacters = (characters) => {
 
 export default function reducer(state = initialState, action){
     switch(action.type) {
-        case `${GET_PEOPLE}_PENDING`:
+        case `${GET_CHARACTERS}_PENDING`:
         return {
             ...state,
             isLoading: true
         };
-        case `${GET_PEOPLE}_FULFILLED`:
+        case `${GET_CHARACTERS}_FULFILLED`:
             return {
                 ...state,
                 isLoading: false,
-                characters: action.paylod.data
+                characters: action.payload.data
             }
-        case `${GET_PEOPLE}_REJECTED`:
+        case `${GET_CHARACTERS}_REJECTED`:
             return {
                 ...state,
                 isLoading: false,

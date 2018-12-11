@@ -6,8 +6,7 @@ import './contact.css';
 class contact extends Component {
  
   render() {
-    console.log(this.props);
-    const { name, email, birthday, hobbies } = this.props;
+    const { name, email, birthday, hobbies } = this.props.reducer;
 
     return (
       <div>

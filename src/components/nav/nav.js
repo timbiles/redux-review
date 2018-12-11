@@ -4,12 +4,18 @@ import { Link } from 'react-router-dom';
 import './nav.css'
 
 class nav extends Component {
+  state = {
+    links: ['Home', 'About', 'Contact', 'Random']
+  }
   render() {
+    const navMap = this.state.links.map(e => {
+      return <Link key={e} to={e === 'Home' ? '/' : e}>
+      {e}
+      </Link>
+    })
     return (
       <div className='nav'>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
+        {navMap}
       </div>
     );
   }
