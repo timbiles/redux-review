@@ -18,7 +18,7 @@ class random extends Component {
 
     render() {
         console.log(this.props)
-        const map = this.state.characters.map(e => {
+        const map = this.props.asyncReducer.characters.map(e => {
             return <div key={e.char_id}>
             <h4>{e.name}</h4>
             <img style={{width: '200px'}}src={e.img} alt="character profile"/>

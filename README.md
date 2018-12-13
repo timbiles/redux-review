@@ -16,6 +16,10 @@ Let's initially install 2 packages, redux and react-redux.
 
 These packages fulfill the bulk of our needs from redux.
 
+## Ducks Model 🦆
+
+The Redux Ducks model is a way of organizing all the pieces needed to use Redux with React. In this model, we compile all the necessary parts in 2 files, store.js and reducer.js that are held in a folder called 'ducks'.
+
 ## Start at the store
 
 After the packages are installed, we will create a file called 'store.js'. The store is a javascript object that tracks the data of our application. You will only ever need 1 store.
@@ -82,3 +86,83 @@ export default function reducer(state = initialState, action) {
     }
 }
 ```
+
+## Connecting to components
+
+After the reducer is set up, it's time to connect the redux state and action creators to your file. First, you need to wrap your application in whats called the 'Provider' to make the store available. 
+
+Check out the following example of App.js
+
+```js
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+
+import store from './ducks/store';
+import './App.css';
+
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+          <div className="App"/>
+      </Provider>
+    );
+  }
+}
+
+export default App;
+
+```
+
+In this component, we wrap the entirety of our app (located in the div) with the Provider, which we import from 'react-redux'. Don't forget to pass in the store as a prop.
+
+
+We can now access the data and functions inside our reducer. In a stateful component, we will destructure 'connect' on the import of 'react-redux'.
+
+```js
+import { connect } from 'react-redux'
+```
+
+Then create a function called 'mapStateToProps', taking in 1 argument (state), and returning an object that will be merged with the components props. You will find access to this state through 'this.props'.
+
+You will then pass the function in the invocation of connect, which is exported from the component. Don't forget to also export the component itself!
+
+```js
+const mapStateToProps = state => {
+    const {name, email} = state
+    return {
+        name,
+        email
+    }
+}
+
+export default connect(mapStateToProps)(Home)
+```
+
+This process grants you access to the state of the reducer! However, that alone is not very helpful, especially if you intend to alter that information in some way. To do this, we need to access to the action creators we wrote in the reducer. 
+
+A few steps...
+
+    - First import the action creators you need at the top of the component.
+    - Then dispatch those (as an object, as the second argument of connect, after mapStateToProps)
+    - This allows the functions to be merged with props.
+
+Take a look a this following syntax...
+
+```js
+import { updateName, updateEmail} from '../../ducks/reducer';
+
+...
+
+const mapStateToProps = state => {
+    const {name, email} = state
+    return {
+        name,
+        email
+    }
+}
+
+export default connect(mapStateToProps, {updateName, updateEmail})(Home)
+```
+
+In this example, we not only bring in the state and the 2 action creators from the reducer, but we now have access (through props) to use them to update/edit the information that we need.
