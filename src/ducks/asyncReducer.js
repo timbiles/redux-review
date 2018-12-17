@@ -8,7 +8,7 @@ const initialState = {
 
 const GET_CHARACTERS = 'GET_CHARACTERS'
 
-export const getCharacters = (characters) => {
+export const getCharacters = () => {
     return {
         type: GET_CHARACTERS,
         payload: axios.get('https://www.breakingbadapi.com/api/characters')

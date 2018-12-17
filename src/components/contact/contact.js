@@ -6,7 +6,8 @@ import './contact.css';
 class contact extends Component {
  
   render() {
-    const { name, email, birthday, hobbies } = this.props.reducer;
+    console.log(this.props)
+    const { name, email, birthday, hobbies } = this.props;
 
     return (
       <div>
@@ -20,12 +21,13 @@ class contact extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+// const mapStateToProps = state => state;
 
-// const mapStateToProps = state => {
-//     const {name, email, birthday, hobbies} = state
+const mapStateToProps = state => {
+  console.log(state)
+    const {name, email, birthday, hobbies} = state.reducer
 
-//     return { name, email, birthday, hobbies}
-// };
+    return { name, email, birthday, hobbies}
+};
 
 export default connect(mapStateToProps)(contact);

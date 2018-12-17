@@ -166,3 +166,21 @@ export default connect(mapStateToProps, {updateName, updateEmail})(Home)
 ```
 
 In this example, we not only bring in the state and the 2 action creators from the reducer, but we now have access (through props) to use them to update/edit the information that we need.
+
+
+## Connecting functions to components
+
+After merging your state into your components props, you may need access to the action creators from your reducer. To do that, begin my importing them into your component...
+
+```js
+import { updateName, updateEmail } from '../../ducks/reducer'
+```
+
+Next, dispatch them inside the invocation of connect in the export of your component.
+
+```js
+
+export default connect(mapStateToProps, {updateName, updateEmail})(Home)
+```
+
+You now have access to those functions you created in your reducer through props.

@@ -11,16 +11,12 @@ import {
 
 class about extends Component {
   
-
   handleEvent = e => {
     this.setState({[e.target.name]: e.target.value})
   }
   
   render() {
-
-
-    
-    // console.log(this.props)
+    console.log(this.props)
     const {
       updateName,
       updateEmail,

@@ -1,4 +1,4 @@
-// initial state
+// initialState
 const initialState = {
   name: '',
   email: '',
@@ -6,45 +6,42 @@ const initialState = {
   hobbies: ''
 };
 
-//action types or constants
+// action types or constants
 const UPDATE_NAME = 'UPDATE_NAME';
 const UPDATE_EMAIL = 'UPDATE_EMAIL';
 const UPDATE_BIRTHDAY = 'UPDATE_BIRTHDAY';
 const UPDATE_HOBBIES = 'UPDATE_HOBBIES';
-const UPDATE_INPUT = 'UPDATE_INPUT';
 
-//action creator
+// action creators
 export const updateName = name => {
   return {
     type: UPDATE_NAME,
     payload: name
   };
 };
+
 export const updateEmail = email => {
   return {
     type: UPDATE_EMAIL,
     payload: email
   };
 };
-export const updateBirthday = birthday => {
+
+export const updateBirthday = birth => {
   return {
     type: UPDATE_BIRTHDAY,
-    payload: birthday
+    payload: birth
   };
 };
-export const updateHobbies = hobbies => {
+
+export const updateHobbies = hobb => {
   return {
     type: UPDATE_HOBBIES,
-    payload: hobbies
+    payload: hobb
   };
 };
 
-// export const updateInput = input => {
-//   type: UPDATE_INPUT;
-//   payload: input
-// }
-
-//reducer
+// reducer
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_NAME:
@@ -58,19 +55,11 @@ export default function reducer(state = initialState, action) {
         email: action.payload
       };
     case UPDATE_BIRTHDAY:
-      return {
-        ...state,
-        birthday: action.payload
-      };
+      return Object.assign({}, state, { birthday: action.payload });
     case UPDATE_HOBBIES:
       return {
         ...state,
         hobbies: action.payload
-      };
-      case UPDATE_INPUT:
-      return {
-        ...state,
-        [action.payload.target.name]: action.payload.target.value
       };
     default:
       return state;
