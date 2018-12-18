@@ -8,7 +8,7 @@ Redux is a state management tool designed to keep track of it's own state, acces
 - Combined Reducer
 - Asynchronous Reducer
 
-## links
+## Index
 
 1. **[Store](#Start-at-the-store)**
 2. **[Reducer](#Set-up-the-reducer)**
