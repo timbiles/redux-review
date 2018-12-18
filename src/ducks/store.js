@@ -18,7 +18,7 @@
 // export default createStore(combined, composeEnhancers());
 
 
-///////////EXAMPLE OF COMBINED REDUCERS //////////////
+///////////EXAMPLE OF COMBINED REDUCERS with PROMISE MIDDLEWARE//////////////
 
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware'

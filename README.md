@@ -8,6 +8,14 @@ Redux is a state management tool designed to keep track of it's own state, acces
 - Combined Reducer
 - Asynchronous Reducer
 
+## links
+
+1. **[Store](#Start-at-the-store)**
+2. **[Reducer](#Set-up-the-reducer)**
+3. **[Connect](#Connecting-to-components)**
+4. **[Combined Reducer](#Combined-Reducer)**
+5. **[Asynchronous Reducer](#Asynchronous-Reducer)**
+
 ## Installation
 
 Let's initially install 2 packages, redux and react-redux.
@@ -184,3 +192,48 @@ export default connect(mapStateToProps, {updateName, updateEmail})(Home)
 ```
 
 You now have access to those functions you created in your reducer through props.
+
+
+## Combined Reducer
+
+You can have as many reducers as you please, but you are only able to have 1 store. In order to have access to multiple reducers, you will need to set up a few more things in your store.
+
+Consider the following example..
+
+```js
+import { createStore, combineReducers } from 'redux';
+
+import reducer from './reducer';
+import asyncReducer from './asyncReducer';
+
+const combined = combineReducers({
+    reducer,
+    asyncReducer
+});
+
+export default createStore(combined);
+```
+
+Notice how I destructured 'combineReducers' off of redux, and then passed each of the reducers that are needed inside the invocation of said combineReducers. Be aware, this create an object with 2 key/value pairs, as opposed to the previous example of the store where there was only one option. 
+
+## Asynchronous Reducer
+
+An asynchronous reducer may be used if you need more to place axios calls in your reducer. This requires 2 more additions to your store, as well as installing another package. You need to destructure `applyMiddleware` from redux, and `promiseMiddleware` from redux-promise-middleware. Be sure to install 'redux-promise-middleware' from npm or yarn.
+
+Check out the store to find an example of how this would change that setup. This changes the original setup of your store.
+
+Inside your reducer, import axios, and place whatever call you need inside the paylod of your action creator.
+
+```js
+export const getCharacters = () => {
+    return {
+        type: GET_CHARACTERS,
+        payload: axios.get('https://www.breakingbadapi.com/api/characters')
+    }
+}
+
+```
+
+This looks very similar to how we set up our action creators previously. 
+
+Check out the reducer in `asyncReducer.js` file in the ducks folder. This example shows how you could handle the axios call. 
